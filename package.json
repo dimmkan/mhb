@@ -1,0 +1,88 @@
+{
+  "name": "my-home-backend",
+  "version": "1.6.6",
+  "description": "Backend",
+  "main": "index.js",
+  "workspaces": [
+    "./lib/shared",
+    "./lib/application",
+    "./lib/domain",
+    "./lib/infrastructure",
+    "./lib/interfaces"
+  ],
+  "scripts": {
+    "pm2": "pm2 start pm2.json --no-daemon",
+    "dev": "cross-env NODE_ENV=development NODE_ICU_DATA=node_modules/full-icu node index.js",
+    "start": "cross-env NODE_ENV=production NODE_ICU_DATA=node_modules/full-icu node index.js",
+    "test": "cross-env NODE_ENV=test jest",
+    "lint": "npx eslint . --fix",
+    "coverage": "jest --coverage",
+    "migrate": "knex migrate:latest --knexfile lib/infrastructure/db/knex/knexfile.js",
+    "seed": "knex seed:run --knexfile lib/infrastructure/db/knex/knexfile.js"
+  },
+  "dependencies": {
+    "@directus/sdk": "^9.11.1",
+    "@fastify/cookie": "^6.0.0",
+    "@fastify/cors": "^7.0.0",
+    "@fastify/helmet": "^8.1.0",
+    "@fastify/multipart": "^6.0.0",
+    "@fastify/session": "^8.2.0",
+    "@fastify/static": "^5.0.2",
+    "@fastify/swagger": "^6.0.1",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "cron": "^2.0.0",
+    "cyrillic-to-translit-js": "^3.2.1",
+    "dbffile": "^1.8.1",
+    "dotenv": "^16.0.1",
+    "easy-yandex-s3": "^1.1.6",
+    "fastify": "^3.29.0",
+    "fastify-plugin": "^3.0.1",
+    "firebase-admin": "^10.2.0",
+    "form-data": "^4.0.0",
+    "full-icu": "^1.4.0",
+    "jose": "^4.8.1",
+    "knex": "^2.1.0",
+    "libphonenumber-js": "^1.10.6",
+    "luxon": "^2.4.0",
+    "mime-types": "^2.1.35",
+    "nanoid": "^3.3.4",
+    "node-cache": "^5.1.2",
+    "node-cron": "^3.0.0",
+    "npm-check-updates": "^13.0.3",
+    "objection": "^3.0.1",
+    "parse-duration": "^1.0.2",
+    "percent-round": "^2.3.1",
+    "pg": "^8.7.3",
+    "pm2": "^5.2.0",
+    "ramda": "^0.28.0",
+    "retry": "^0.13.1",
+    "slugify": "^1.6.5",
+    "soap": "^0.43.0",
+    "stack-trace": "^0.0.10",
+    "stdout-stream": "^1.4.1",
+    "pino": "^8.4.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.16"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6.12"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/coverage/**"
+    ],
+    "testURL": "http://localhost/"
+  }
+}
