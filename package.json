@@ -13,7 +13,7 @@
   "scripts": {
     "pm2": "pm2 start pm2.json --no-daemon",
     "dev": "cross-env NODE_ENV=development NODE_ICU_DATA=node_modules/full-icu node index.js",
-    "start": "cross-env NODE_ENV=production NODE_ICU_DATA=node_modules/full-icu node index.js",
+    "start": "knex migrate:latest --knexfile lib/infrastructure/db/knex/knexfile.js && cross-env NODE_ENV=production NODE_ICU_DATA=node_modules/full-icu node index.js",
     "test": "cross-env NODE_ENV=test jest",
     "lint": "npx eslint . --fix",
     "coverage": "jest --coverage",

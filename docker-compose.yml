@@ -1,0 +1,21 @@
+version: '3'
+services:
+  api:
+    container_name: myhome
+    build:
+      context: ./
+    image: root/my_home_app
+    restart:  always
+    command: "npm run start"
+    ports:
+      - 3000:3000
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}"
+    environment:
+      DB_HOST: '37.77.107.202'
+      CMS_EXT_PUBLIC_URL: 'http://cms.promoydom.ru'
+      MANAGING_EXT_PUBLIC_URL: 'http://cms.promoydom.ru/items/management'
+      HTTP_API_PORT: '3000'
+      HTTP_PUBLIC_URL:  '0.0.0.0'
